@@ -16,9 +16,6 @@ export default class TodoModel{
   @action
   toggleState(){
     this.complated = !this.complated;
-    if(this.complated){
-      this.removeTodo();
-    }
   }
   @action
   removeTodo(){
