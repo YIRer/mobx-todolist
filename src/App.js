@@ -15,6 +15,10 @@ class App extends Component {
     const { todoStore } = this.props;
     todoStore.allTodosToggle();
   }
+  deleteTodosComplated= ()=>{
+    const { todoStore } = this.props;
+    todoStore.deleteComplated();
+  }
   render() {
     const { todoStore } = this.props;
     return (
@@ -27,6 +31,7 @@ class App extends Component {
         <br />
         <button onClick={this.allTodosChecked}>All Todo Checked</button>
         <button onClick={this.allTodosToggle}>All Todo Toggle</button>
+        <button onClick={this.deleteTodosComplated}>Remove Complated Todos</button>
         <ul>
           {
             todoStore.todos.map((todo)=>{

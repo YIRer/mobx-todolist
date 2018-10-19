@@ -1,27 +1,34 @@
-import { observable, action } from 'mobx';
+import { observable, action } from "mobx";
 
-export default class TodoModel{
-
+export default class TodoModel {
   store;
   id;
-  @observable todo
-  @observable complated
+  @observable
+  todo;
+  @observable
+  complated;
 
-  constructor(store, id, todo, complated){
+  constructor(store, id, todo, complated) {
     this.store = store;
     this.id = id;
     this.todo = todo;
     this.complated = complated;
   }
   @action
-  toggleState(){
+  toggleState() {
     this.complated = !this.complated;
   }
   @action
-  removeTodo(){
-    this.store.todos.remove(this);
+  removeTodo() {
+    if (this.complated) {
+      this.store.todos.remove(this);
+    }
   }
-  editTodo(value){
+  editTodo(value) {
+    const duplicateCheck = this.store.todos.filter(todo => todo.todo === value);
+    if (duplicateCheck.length > 0 || value.length < 1) {
+      return;
+    }
     this.todo = value;
   }
 }
