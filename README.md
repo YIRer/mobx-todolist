@@ -1,2 +1,2 @@
-initail instal : yarn
+initail inital : yarn
 start : yarn start
