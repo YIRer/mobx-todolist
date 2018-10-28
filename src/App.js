@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react';
-import DevTools from 'mobx-react-devtools';
-import TodoItem from './components/TodoItem';
-import TodoInput from './components/TodoInput';
-import TodoFooter from './container/TodoFooter';
-@inject('todoStore')
+import React, { Component } from "react";
+import { observer, inject } from "mobx-react";
+import DevTools from "mobx-react-devtools";
+import TodoItem from "./components/TodoItem";
+import TodoInput from "./components/TodoInput";
+import TodoFooter from "./container/TodoFooter";
+@inject("todoStore")
 @observer
 class App extends Component {
-  allTodosChecked = ()=>{
+  allTodosChecked = () => {
     const { todoStore } = this.props;
     todoStore.allTodosChecked();
-  }
-  allTodosToggle = ()=>{
+  };
+  allTodosToggle = () => {
     const { todoStore } = this.props;
     todoStore.allTodosToggle();
-  }
-  deleteTodosComplated= ()=>{
+  };
+  deleteTodosComplated = () => {
     const { todoStore } = this.props;
     todoStore.deleteComplated();
-  }
+  };
   render() {
     const { todoStore } = this.props;
     return (
@@ -26,18 +26,18 @@ class App extends Component {
         <header className="App-header">
           <h1>{todoStore.title}</h1>
         </header>
-        <hr/>
+        <hr />
         <TodoInput store={todoStore} />
         <br />
         <button onClick={this.allTodosChecked}>All Todo Checked</button>
         <button onClick={this.allTodosToggle}>All Todo Toggle</button>
-        <button onClick={this.deleteTodosComplated}>Remove Complated Todos</button>
+        <button onClick={this.deleteTodosComplated}>
+          Remove Complated Todos
+        </button>
         <ul>
-          {
-            todoStore.todos.map((todo)=>{
-              return <TodoItem key={todo.id} todo={todo}/>
-            })
-          }
+          {todoStore.todos.map(todo => {
+            return <TodoItem key={todo.id} todo={todo} />;
+          })}
         </ul>
         <TodoFooter store={todoStore} />
         <DevTools />

@@ -1,14 +1,15 @@
+//@flow
 import { observable, action, computed } from "mobx";
 import uuid from "uuid/v4";
 import TodoModel from "../../models/TodoModel";
 
 class Todos {
   @observable
-  title = "MOBX TODOLIST";
+  title : string = "MOBX TODOLIST";
   @observable
-  todos;
+  todos : Array<{}> = [];
   @observable
-  todoValue;
+  todoValue : string = "";
   constructor() {
     this.todos = [];
     this.todoValue = "";
@@ -46,7 +47,7 @@ class Todos {
     this.todoValue = "";
   }
   @action
-  updateTodoValue(value) {
+  updateTodoValue(value:string) {
     this.todoValue = value;
   }
   @action

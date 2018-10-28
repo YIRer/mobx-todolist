@@ -1,0 +1,9 @@
+[include]
+./src
+
+[libs]
+./node_modules/mobx/lib/mobx.js.flow
+
+[options]
+module.system.node.resolve_dirname=node_modules
+esproposal.decorators=ignore

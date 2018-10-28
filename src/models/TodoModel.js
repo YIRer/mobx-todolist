@@ -1,14 +1,15 @@
+//@flow
 import { observable, action } from "mobx";
 
 export default class TodoModel {
-  store;
-  id;
+  store: any;
+  id: string;
   @observable
-  todo;
+  todo = {};
   @observable
-  complated;
+  complated: boolean;
 
-  constructor(store, id, todo, complated) {
+  constructor(store: any, id: string, todo: {}, complated: boolean) {
     this.store = store;
     this.id = id;
     this.todo = todo;
@@ -24,7 +25,7 @@ export default class TodoModel {
       this.store.todos.remove(this);
     }
   }
-  editTodo(value) {
+  editTodo(value:string) {
     const duplicateCheck = this.store.todos.filter(todo => todo.todo === value);
     if (duplicateCheck.length > 0 || value.length < 1) {
       return;
